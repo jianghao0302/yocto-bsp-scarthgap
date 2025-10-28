@@ -1,0 +1,62 @@
+From a485259228b3692e7874c6d5a2b41f91da47fa4c Mon Sep 17 00:00:00 2001
+From: Samuli Piippo <samuli.piippo@qt.io>
+Date: Wed, 18 Aug 2021 15:09:41 +0300
+Subject: [PATCH] CMake: use generated yocto toolchains
+
+Bitbake knows how to generate working toolchains, use those instead of
+ones done by webengine. No need to use separate host pkg-wrapper with
+these toolchain. No need to do separate host build, we'll use the
+target binaries where needed.
+
+Upstream-Status: Inappropriate [embedded specific]
+Change-Id: I217c9122144f25bb2d28717e7248c2a51b149127
+---
+ cmake/QtToolchainHelpers.cmake | 12 +++++-------
+ src/CMakeLists.txt             |  2 +-
+ 2 files changed, 6 insertions(+), 8 deletions(-)
+
+diff --git a/cmake/QtToolchainHelpers.cmake b/cmake/QtToolchainHelpers.cmake
+index eaa3a4339..9a6d57945 100644
+--- a/cmake/QtToolchainHelpers.cmake
++++ b/cmake/QtToolchainHelpers.cmake
+@@ -210,7 +210,7 @@ endfunction()
+ 
+ macro(create_pkg_config_host_wrapper buildDir)
+     find_package(PkgConfigHost)
+-        if(CMAKE_CROSSCOMPILING)
++        if(FALSE)
+             create_pkg_config_wrapper("${buildDir}/pkg-config-host_wrapper.sh" "${PKG_CONFIG_HOST_EXECUTABLE}")
+             set(PKG_CONFIG_HOST_EXECUTABLE "${buildDir}/pkg-config-host_wrapper.sh")
+         endif()
+@@ -551,14 +551,12 @@ macro(append_toolchain_setup)
+     elseif(LINUX)
+         get_gn_arch(cpu ${TEST_architecture_arch})
+         list(APPEND gnArgArg
+-            custom_toolchain="${buildDir}/target_toolchain:target"
+-            host_toolchain="${buildDir}/host_toolchain:host"
++            custom_toolchain="//build/toolchain/yocto:yocto_target"
++            host_toolchain="//build/toolchain/yocto:yocto_native"
++            v8_snapshot_toolchain="//build/toolchain/yocto:yocto_target"
+         )
+         if(CMAKE_CROSSCOMPILING)
+-            list(APPEND gnArgArg
+-                v8_snapshot_toolchain="${buildDir}/v8_toolchain:v8"
+-                target_cpu="${cpu}"
+-            )
++            list(APPEND gnArgArg target_cpu="${cpu}")
+         else()
+             list(APPEND gnArgArg host_cpu="${cpu}")
+         endif()
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 453b2c1b6..6b8c5c254 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -114,7 +114,7 @@ endif()
+ #  HOST PROJECT
+ ##
+ 
+-if(CMAKE_CROSSCOMPILING AND NOT IOS AND NOT MACOS AND NOT WIN32)
++if(FALSE)
+ 
+     if(NOT Gn_FOUND)
+         message(FATAL_ERROR "\nHost gn not found - cross compilation not possible")
