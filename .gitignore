@@ -1,0 +1,74 @@
+# 常用 Yocto / OpenEmbedded .gitignore
+# 注：根据项目实际结构调整（例如保留 conf/bblayers.conf，忽略 conf/local.conf）
+
+# 构建输出
+tmp/
+tmp-*/
+build/
+sstate-cache/
+downloads/
+cache/
+deploy/
+sdk/
+sysroots/       # 若使用外部 sysroots, 请根据需要保留/移除
+work/           # 有些工程会把 work 目录放在仓库外部
+build_*/
+
+# BitBake / CookerDaemon / 锁和 PID 文件
+bitbake.lock
+*.lock
+*.pid
+bitbake-cookerdaemon-*/
+
+# 本地/自动生成的配置（通常不提交）
+**/conf/local.conf
+**/conf/auto.conf
+**/conf/*.local
+local.conf
+auto.conf
+
+# 构建产物和包
+*.ipk
+*.deb
+*.rpm
+*.tar.bz2
+*.tar.gz
+*.tbz2
+*.zip
+
+# 部署产物和镜像
+images/
+deploy/images/
+deploy/licenses/
+deploy/sdk/
+
+# 日志、临时文件
+*.log
+log/
+tmpfiles/
+.cache/
+*.tmp
+
+# 编辑器/IDE 文件
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+*.iml
+*.sw?
+*~
+.DS_Store
+Thumbs.db
+
+# 工具链安装器 / SDK 安装脚本（按需保留）
+*.run
+*.bin
+
+# 可选：如果有容器/虚拟化构建产物
+docker-compose.override.yml
+.vagrant/
+
+# 其它常见忽略项（按需启用/禁用）
+dist/
+out/
+node_modules/

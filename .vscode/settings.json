@@ -1,0 +1,50 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.vscode": false,
+        "**/tmp": true,
+        "**/sstate-cache": true,
+        "**/build": true,
+        "**/downloads": true,
+        "**/node_modules": true,
+        "**/*.o": true,
+        "**/*.pyc": true,
+        "**/.cache": true,
+
+        "build_*": true,
+        "downloads": true
+    },
+    "search.exclude": {
+        "**/.git": true,
+        "**/tmp": true,
+        "**/sstate-cache": true,
+        "**/build": true,
+        "**/downloads": true,
+        "**/node_modules": true,
+        "**/*.o": true,
+        "**/*.pyc": true,
+        "build_*": true,
+        "downloads": true
+    },
+    "files.watcherExclude": {
+        "**/tmp/**": true,
+        "**/sstate-cache/**": true,
+        "**/build/**": true,
+        "**/downloads/**": true,
+        "**/node_modules/**": true,
+        "build_*": true,
+        "downloads": true
+    },
+    "python.autoComplete.extraPaths": [
+        "${workspaceFolder}/sources/poky/bitbake/lib",
+        "${workspaceFolder}/sources/poky/meta/lib"
+    ],
+    "python.analysis.extraPaths": [
+        "${workspaceFolder}/sources/poky/bitbake/lib",
+        "${workspaceFolder}/sources/poky/meta/lib"
+    ],
+    "files.associations": {
+        "*.conf": "bitbake",
+        "*.inc": "bitbake"
+    }
+}
