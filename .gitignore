@@ -13,6 +13,7 @@ sdk/
 sysroots/       # 若使用外部 sysroots, 请根据需要保留/移除
 work/           # 有些工程会把 work 目录放在仓库外部
 build_*/
+sources/common/meta-timesys/lib/tsmeta/__pycache__/
 
 # BitBake / CookerDaemon / 锁和 PID 文件
 bitbake.lock

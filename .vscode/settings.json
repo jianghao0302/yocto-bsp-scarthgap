@@ -11,7 +11,7 @@
         "**/*.pyc": true,
         "**/.cache": true,
 
-        "build_*": true,
+        "build_*": false,
         "downloads": true
     },
     "search.exclude": {
@@ -33,7 +33,7 @@
         "**/downloads/**": true,
         "**/node_modules/**": true,
         "build_*": true,
-        "downloads": true
+        "downloads": true,
     },
     "python.autoComplete.extraPaths": [
         "${workspaceFolder}/sources/poky/bitbake/lib",
