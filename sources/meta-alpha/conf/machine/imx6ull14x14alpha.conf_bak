@@ -1,0 +1,29 @@
+include conf/machine/include/imx-base.inc
+include conf/machine/include/arm/armv7a/tune-cortexa7.inc
+
+# 目标架构（ARM 32 位填 "arm"，ARM 64 位填 "aarch64"）
+TARGET_ARCH = "arm"
+# 架构子类型（根据硬件调整，如 ARMv7-A 填 "armv7a"）
+DEFAULTTUNE = "cortexa7thf-neon"
+# Machine 名称（需与文件名一致，此处为 "myarmboard"）
+MACHINE = "imx6ull14x14alpha"
+# SoC 架构后缀（根据硬件调整，如 i.MX6 填 "-mx6"）
+MACHINE_SOCARCH_SUFFIX = "-mx6ul"
+
+########################################################################################
+# U-Boot 配置
+########################################################################################
+# U-Boot 入口点地址（根据 U-Boot 配置调整）
+UBOOT_ENTRYPOINT = "0x80008000"
+# 生成的 U-Boot 镜像文件名
+UBOOT_MAKE_TARGET = "u-boot.imx"
+# 生成 U-Boot 镜像的后缀
+UBOOT_SUFFIX = "imx"
+# 选择 U-Boot 配置文件
+UBOOT_MACHINE = "mx6ull_14x14_alpha_emmc_defconfig"
+
+########################################################################################
+# kernel 配置
+########################################################################################
+KERNEL_DEVICETREE = "nxp/imx/imx6ull-14x14-alpha-emmc.dtb"
+KBUILD_DEFCONFIG = "imx6ull_14x14_alpha_emmc_defconfig"

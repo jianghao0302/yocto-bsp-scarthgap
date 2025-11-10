@@ -37,7 +37,7 @@ SOURCES_DIR=${ROOT_DIR}/sources
 YOCTO_LAYER_ROOT_DIR=${SOURCES_DIR}/yocto
 COMMON_LAYER_ROOT_DIR=${SOURCES_DIR}/common
 FSL_LAYER_ROOT_DIR=${SOURCES_DIR}/freescale
-NXP_LAYERROOT_DIR=${SOURCES_DIR}/nxp
+NXP_LAYER_ROOT_DIR=${SOURCES_DIR}/nxp
 OE_ROOT_DIR=${YOCTO_LAYER_ROOT_DIR}/poky
 if [ -e ${YOCTO_LAYER_ROOT_DIR}/oe-core ]; then
     OE_ROOT_DIR=${YOCTO_LAYER_ROOT_DIR}/oe-core
@@ -230,7 +230,6 @@ COMMON_LAYER_LIST=" \
     $COMMON_LAYER_ROOT_DIR/meta-virtualization \
     $COMMON_LAYER_ROOT_DIR/meta-timesys \
     $COMMON_LAYER_ROOT_DIR/meta-security \
-    $COMMON_LAYER_ROOT_DIR/meta-browser/meta-chromium \
     $COMMON_LAYER_ROOT_DIR/meta-browser/meta-firefox \
     $COMMON_LAYER_ROOT_DIR/meta-qt6 \
 "
